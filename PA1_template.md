@@ -239,10 +239,17 @@ totalStep2<-aggregate(. ~ date,data = DF2,FUN=sum)
 totalStep$type <- 'with NA'
 totalStep2$type <- 'wihthout NA'
 totalStepToPlot <- rbind(totalStep, totalStep2)
-ggplot(totalStepToPlot, aes(steps, fill = type)) + geom_density(alpha = 0.2)
+qplot(date,steps, data=totalStep2, stat="summary", fun.y="sum", geom="bar")
 ```
 
 ![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11.png) 
+Panel Plot comparing the two data sets
+
+```r
+ggplot(totalStepToPlot, aes(steps, fill = type)) + geom_density(alpha = 0.2)
+```
+
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
 ## Report new Mean and Media
 ### This graph compare the old mean with the new mean
 
@@ -256,7 +263,7 @@ totalMeanToPlot <- rbind(meanStep, meanStep2)
 ggplot(totalMeanToPlot, aes(StepMean, fill = type)) + geom_density(alpha = 0.2)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
 
 ### This graph compare the old median with the new meadian
 
@@ -269,7 +276,7 @@ totalMedianToPlot <- rbind(medianStep, medianStep2)
 ggplot(totalMedianToPlot, aes(StepMedian, fill = type)) + geom_density(alpha = 0.2)
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
 
 The impact if missing values is the variation of the results, expecially of the median which is very much different
 
@@ -293,4 +300,4 @@ Plot of the results
 xyplot(steps~interval | wend,data =DF2Agg , type="l", layout=c(1,2))
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png) 
+![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16.png) 

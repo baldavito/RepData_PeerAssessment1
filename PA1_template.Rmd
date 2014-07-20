@@ -90,6 +90,10 @@ totalStep2<-aggregate(. ~ date,data = DF2,FUN=sum)
 totalStep$type <- 'with NA'
 totalStep2$type <- 'wihthout NA'
 totalStepToPlot <- rbind(totalStep, totalStep2)
+qplot(date,steps, data=totalStep2, stat="summary", fun.y="sum", geom="bar")
+```
+Panel Plot comparing the two data sets
+```{r}
 ggplot(totalStepToPlot, aes(steps, fill = type)) + geom_density(alpha = 0.2)
 ```
 ## Report new Mean and Media
